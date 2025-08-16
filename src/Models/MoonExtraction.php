@@ -1,6 +1,6 @@
 <?php
 
-namespace YourNamespace\Seat\MoonExtractions\Models;
+namespace MrMajestic\Seat\MoonExtractions\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -8,6 +8,69 @@ use Seat\Eveapi\Models\Corporation\CorporationInfo;
 use Seat\Eveapi\Models\Universe\UniverseSystem;
 use Seat\Eveapi\Models\Universe\UniverseRegion;
 
+use OpenApi\Annotations as OA;
+
+/**
+ * MoonExtraction Eloquent model.
+ */
+ 
+  @OA\Schema(
+    schema="MoonExtraction",
+    title="Moon Extraction",
+    description="Moon extraction timer for a refinery owned by a corporation.",
+    required={"structure_id","moon_id","extraction_start_time","chunk_arrival_time","natural_decay_time"},
+ 
+    @OA\Property(
+      property="id", type="integer", format="int64", readOnly=true,
+      description="Internal DB id", example=42
+    ),
+    @OA\Property(
+      property="corporation_id", type="integer", format="int32",
+      description="Owning corporation ID", example=99001234
+    ),
+    @OA\Property(
+      property="structure_id", type="integer", format="int64",
+      description="Refinery structure ID", example=1023456789012
+    ),
+    @OA\Property(
+      property="moon_id", type="integer", format="int32",
+      description="EVE universe moon ID", example=40161465
+    ),
+    @OA\Property(
+      property="extraction_start_time", type="string", format="date-time",
+      description="When the laser was started", example="2025-08-16T12:34:56Z"
+    ),
+    @OA\Property(
+      property="chunk_arrival_time", type="string", format="date-time",
+      description="When the chunk arrives/ready to fracture", example="2025-08-20T12:34:56Z"
+    ),
+    @OA\Property(
+      property="natural_decay_time", type="string", format="date-time",
+      description="When the chunk naturally decays if not fractured", example="2025-08-22T12:34:56Z"
+    ),
+    @OA\Property(
+      property="phase", type="string",
+      description="Optional derived phase based on current time vs timers",
+      enum={"scheduled","ready","decayed"}, example="scheduled", nullable=true
+    ),
+    @OA\Property(
+      property="notes", type="string", nullable=true,
+      description="Optional internal note"
+    ),
+    @OA\Property(
+      property="created_at", type="string", format="date-time", readOnly=true
+    ),
+    @OA\Property(
+      property="updated_at", type="string", format="date-time", readOnly=true
+    )
+  )
+ 
+  @OA\Schema(
+    schema="MoonExtractionCollection",
+    type="array",
+    @OA\Items(ref="#/components/schemas/MoonExtraction")
+  )
+ 
 class MoonExtraction extends Model
 {
     protected $fillable = [

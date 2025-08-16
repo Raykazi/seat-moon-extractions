@@ -1,13 +1,13 @@
 <?php
 
-namespace YourNamespace\Seat\MoonExtractions\Commands;
+namespace MrMajestic\Seat\MoonExtractions\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
 use Seat\Eveapi\Models\Corporation\CorporationInfo;
 use Seat\Eveapi\Models\RefreshToken;
-use YourNamespace\Seat\MoonExtractions\Models\MoonExtraction;
-use YourNamespace\Seat\MoonExtractions\Jobs\Sync\SyncCorporationExtractions;
+use MrMajestic\Seat\MoonExtractions\Models\MoonExtraction;
+use MrMajestic\Seat\MoonExtractions\Jobs\Sync\SyncCorporationExtractions;
 
 class SyncMoonExtractions extends Command
 {
