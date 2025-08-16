@@ -1,0 +1,62 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Install Dependencies",
+			"type": "shell",
+			"command": "composer",
+			"args": [
+				"install",
+				"--optimize-autoloader"
+			],
+			"group": "build",
+			"problemMatcher": [],
+			"isBackground": false
+		},
+		{
+			"label": "Update Dependencies",
+			"type": "shell",
+			"command": "composer",
+			"args": ["update"],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Validate Composer",
+			"type": "shell",
+			"command": "composer",
+			"args": ["validate"],
+			"group": "test",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Run Tests",
+			"type": "shell",
+			"command": "vendor/bin/phpunit",
+			"args": [],
+			"group": "test",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Run PHP CS Fixer (dry-run)",
+			"type": "shell",
+			"command": "vendor/bin/php-cs-fixer",
+			"args": ["fix", "--dry-run", "--diff"],
+			"group": "test",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Sync Moon Extractions",
+			"type": "shell",
+			"command": "php",
+			"args": ["artisan", "moon-extractions:sync"],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}
