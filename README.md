@@ -21,7 +21,7 @@ A SeAT plugin for EVE Online that exposes corporation moon extraction times and 
 
 2. **Publish Configuration** (optional):
    ```bash
-   php artisan vendor:publish --provider="YourNamespace\Seat\MoonExtractions\MoonExtractionsServiceProvider" --tag="config"
+   php artisan vendor:publish --provider="mrmajestic\Seat\MoonExtractions\MoonExtractionsServiceProvider" --tag="config"
    ```
 
 3. **Run Migrations**:

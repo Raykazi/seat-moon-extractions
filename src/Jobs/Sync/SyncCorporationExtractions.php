@@ -1,6 +1,6 @@
 <?php
 
-namespace YourNamespace\Seat\MoonExtractions\Jobs\Sync;
+namespace mrmajestic\Seat\MoonExtractions\Jobs\Sync;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Seat\Eveapi\Jobs\AbstractAuthCorporationJob;
 use Seat\Eveapi\Models\RefreshToken;
 use Seat\Eveapi\Models\Corporation\CorporationInfo;
-use YourNamespace\Seat\MoonExtractions\Models\MoonExtraction;
+use mrmajestic\Seat\MoonExtractions\Models\MoonExtraction;
 
 class SyncCorporationExtractions extends AbstractAuthCorporationJob implements ShouldQueue
 {

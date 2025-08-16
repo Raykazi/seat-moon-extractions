@@ -1,17 +1,21 @@
 {
-    "name": "your-namespace/seat-moon-extractions",
+    "name": "mrmajestic/seat-moon-extractions",
     "description": "SeAT plugin for exposing corporation moon extraction times via API",
     "type": "seat-plugin",
     "license": "MIT",
     "authors": [
         {
-            "name": "Your Name",
-            "email": "your.email@example.com"
+            "name": "mrmajestic",
+            "email": "mrmajestic@windrammers.com"
+        },
+        {
+            "name": "Raykazi",
+            "email": "aadmin@daquan.us"
         }
     ],
     "autoload": {
         "psr-4": {
-            "YourNamespace\\Seat\\MoonExtractions\\": "src/"
+            "mrmajestic\\Seat\\MoonExtractions\\": "src/"
         }
     },
     "minimum-stability": "stable",
@@ -24,7 +28,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "YourNamespace\\Seat\\MoonExtractions\\MoonExtractionsServiceProvider"
+                "mrmajestic\\Seat\\MoonExtractions\\MoonExtractionsServiceProvider"
             ]
         }
     }

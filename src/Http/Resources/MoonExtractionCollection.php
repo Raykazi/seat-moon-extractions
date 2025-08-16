@@ -1,6 +1,6 @@
 <?php
 
-namespace YourNamespace\Seat\MoonExtractions\Http\Resources;
+namespace mrmajestic\Seat\MoonExtractions\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;

@@ -1,13 +1,16 @@
 <?php
 
-namespace YourNamespace\Seat\MoonExtractions\Http\Controllers\Api;
+namespace mrmajestic\Seat\MoonExtractions\Http\Controllers\Api\V2;
 
+// namespace Raykazi\Seat\PI\Http\Controllers\Api\V2;
+
+use Seat\Api\Http\Controllers\Api\v2\ApiController;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use YourNamespace\Seat\MoonExtractions\Models\MoonExtraction;
-use YourNamespace\Seat\MoonExtractions\Http\Resources\MoonExtractionResource;
-use YourNamespace\Seat\MoonExtractions\Http\Resources\MoonExtractionCollection;
+use mrmajestic\Seat\MoonExtractions\Models\MoonExtraction;
+use mrmajestic\Seat\MoonExtractions\Http\Resources\MoonExtractionResource;
+use mrmajestic\Seat\MoonExtractions\Http\Resources\MoonExtractionCollection;
 
 class MoonExtractionsController extends Controller
 {
