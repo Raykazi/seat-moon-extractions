@@ -27,7 +27,7 @@ class MoonExtractionsServiceProvider extends AbstractSeatPlugin
      */
     public function getName(): string
     {
-        return 'SeAT PI';
+        return 'SeAT Moon Extractions';
     }
 
     /**
@@ -63,7 +63,7 @@ class MoonExtractionsServiceProvider extends AbstractSeatPlugin
      */
     public function getPackagistVendorName(): string
     {
-        return 'raykazi/seat-moon-extractions';
+        return 'mrmajestic/seat-moon-extractions';
     }
     /**
      * Bootstrap services.
@@ -91,7 +91,7 @@ class MoonExtractionsServiceProvider extends AbstractSeatPlugin
 		// API Documentation (L5-Swagger): add our annotation paths even if the helper doesn't exist
 		$pluginAnnotationPaths = [
 			__DIR__ . '/Http/Resources',
-			__DIR__ . '/Http/Controllers/Api',
+			__DIR__ . '/Http/Controllers/Api/V2',
 		];
 		$this->registerApiAnnotationsPath($pluginAnnotationPaths);
 	
