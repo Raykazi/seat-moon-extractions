@@ -3,23 +3,23 @@
 namespace mrmajestic\Seat\MoonExtractions\Commands;
 
 use Illuminate\Console\Command;
-use Seat\Eveapi\Models\Corporation\CorporationInfo;
 use mrmajestic\Seat\MoonExtractions\Jobs\Sync\SyncCorporationExtractions;
+use Seat\Eveapi\Models\Corporation\CorporationInfo;
 
 class SyncAllCorporationExtractions extends Command
 {
-    protected $signature = 'moon:sync-all-corporation-extractions';
-    protected $description = 'Sync moon extractions for all corporations\' structures.';
+    protected $signature = 'moon-extractions:sync-all';
+    protected $description = 'Sync moon extractions for all corporations';
 
     public function handle(): void
     {
         $corporations = CorporationInfo::all();
 
         foreach ($corporations as $corporation) {
-            $this->info("Scheduling extraction sync for corporation: {$corporation->name} (ID: {$corporation->corporation_id})");
+            $this->info("Syncing extractions for corporation: {$corporation->name} (ID: {$corporation->corporation_id})");
             SyncCorporationExtractions::dispatch($corporation->corporation_id);
         }
 
-        $this->info('All extraction sync jobs have been scheduled.');
+        $this->info('All corporation extractions sync jobs have been dispatched.');
     }
 }
