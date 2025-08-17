@@ -36,8 +36,8 @@ Route::group([
 					// ->name('api.moon-extractions.index');
 				
 				// Get extraction statistics
-				Route::get('/statistics', [MoonExtractionsController::class, 'statistics'])
-					->name('api.moon-extractions.statistics');
+				Route::get('/statistics')->uses('MoonExtractionsController@statistics');
+					// ->name('api.moon-extractions.statistics');
 				
 				// Get upcoming extractions
 				Route::get('/upcoming', [MoonExtractionsController::class, 'upcoming'])
