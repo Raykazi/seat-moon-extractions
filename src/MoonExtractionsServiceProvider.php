@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Event;
 use Seat\Services\AbstractSeatPlugin;
+use mrmajestic\Seat\MoonExtractions\Commands\SyncAllCorporationExtractions;
 
 class MoonExtractionsServiceProvider extends AbstractSeatPlugin
 {
