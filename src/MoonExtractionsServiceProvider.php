@@ -96,10 +96,8 @@ class MoonExtractionsServiceProvider extends AbstractSeatPlugin
 		$this->registerApiAnnotationsPath($pluginAnnotationPaths);
 	
         // Register commands
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                Commands\SyncMoonExtractions::class,
-            ]);
-        }
+        $this->commands([
+            Commands\SyncMoonExtractions::class,
+        ]);
     }
 }
