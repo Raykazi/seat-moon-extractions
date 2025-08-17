@@ -1,6 +1,6 @@
 <?php
 
-use mrmajestic\Seat\MoonExtractions\Http\Controllers\Api\MoonExtractionsController;
+use mrmajestic\Seat\MoonExtractions\Http\Controllers\Api\V2\MoonExtractionsController;
 
 /*
 |--------------------------------------------------------------------------

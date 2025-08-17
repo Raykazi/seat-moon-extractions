@@ -88,7 +88,7 @@ class MoonExtractionsServiceProvider extends AbstractSeatPlugin
             __DIR__ . '/../database/migrations' => database_path('migrations'),
         ], 'migrations');
         
-		// API Documentation (L5-Swagger): add our annotation paths even if the helper doesn't exist
+		// API Documentation (L5-Swagger)
 		$pluginAnnotationPaths = [
 			__DIR__ . '/Http/Resources',
 			__DIR__ . '/Http/Controllers/Api/V2',

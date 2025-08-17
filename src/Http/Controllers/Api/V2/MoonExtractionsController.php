@@ -12,7 +12,7 @@ use mrmajestic\Seat\MoonExtractions\Models\MoonExtraction;
 use mrmajestic\Seat\MoonExtractions\Http\Resources\MoonExtractionResource;
 use mrmajestic\Seat\MoonExtractions\Http\Resources\MoonExtractionCollection;
 
-class MoonExtractionsController extends Controller
+class MoonExtractionsController extends ApiController
 {
     /**
      * Get all moon extractions with optional filtering.
