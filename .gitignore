@@ -70,3 +70,5 @@ composer.lock
 
 # Local development files
 SETUP_COMPLETE.md
+
+.vscode/

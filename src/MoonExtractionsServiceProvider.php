@@ -1,6 +1,6 @@
 <?php
 
-namespace mrmajestic\Seat\MoonExtractions;
+namespace raykazi\Seat\MoonExtractions;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\Router;
@@ -75,19 +75,6 @@ class MoonExtractionsServiceProvider extends AbstractSeatPlugin
             include __DIR__ . '/Http/routes.php';
         }
         
-        // Load migrations
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-        
-        // Publish config
-        $this->publishes([
-            __DIR__ . '/../config/moon-extractions.php' => config_path('moon-extractions.php'),
-        ], 'config');
-        
-        // Publish migrations
-        $this->publishes([
-            __DIR__ . '/../database/migrations' => database_path('migrations'),
-        ], 'migrations');
-        
 		// API Documentation (L5-Swagger)
 		$pluginAnnotationPaths = [
 			__DIR__ . '/Http/Resources',
@@ -95,9 +82,6 @@ class MoonExtractionsServiceProvider extends AbstractSeatPlugin
 		];
 		$this->registerApiAnnotationsPath($pluginAnnotationPaths);
 
-        // Register the commands
-        $this->commands([
-            \mrmajestic\Seat\MoonExtractions\Commands\SyncMoonExtractions::class,
-        ]);
+
     }
 }

@@ -1,38 +1,25 @@
 <?php
 
-namespace mrmajestic\Seat\MoonExtractions\Http\Resources;
+namespace raykazi\Seat\MoonExtractions\Http\Resources;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class MoonExtractionCollection extends ResourceCollection
 {
-    /**
-     * The resource that this resource collects.
-     */
-    public $collects = MoonExtractionResource::class;
-
-    /**
-     * Transform the resource collection into an array.
-     */
-    public function toArray(Request $request): array
+    public function toArray($request)
     {
         return [
-            'data' => $this->collection,
+            'data' => MoonExtractionResource::collection($this->collection),
+            'links' => [
+                'self' => url()->current(),
+            ],
             'meta' => [
-                'total' => $this->total(),
                 'count' => $this->count(),
-                'per_page' => $this->perPage(),
+                'total' => $this->total(),
                 'current_page' => $this->currentPage(),
                 'last_page' => $this->lastPage(),
                 'from' => $this->firstItem(),
                 'to' => $this->lastItem(),
-            ],
-            'links' => [
-                'first' => $this->url(1),
-                'last' => $this->url($this->lastPage()),
-                'prev' => $this->previousPageUrl(),
-                'next' => $this->nextPageUrl(),
             ],
         ];
     }
