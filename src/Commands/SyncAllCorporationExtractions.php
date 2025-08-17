@@ -11,6 +11,16 @@ class SyncAllCorporationExtractions extends Command
     protected $signature = 'moon-extractions:sync-all';
     protected $description = 'Sync moon extractions for all corporations';
 
+    /**
+     * Create a new command instance.
+     */
+    public function __construct()
+    {
+
+        parent::__construct();
+
+    }
+    
     public function handle(): void
     {
         $corporations = CorporationInfo::all();
