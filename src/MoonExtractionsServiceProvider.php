@@ -6,7 +6,6 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Event;
 use Seat\Services\AbstractSeatPlugin;
-use mrmajestic\Seat\MoonExtractions\Commands\SyncAllCorporationExtractions;
 
 class MoonExtractionsServiceProvider extends AbstractSeatPlugin
 {
@@ -95,10 +94,10 @@ class MoonExtractionsServiceProvider extends AbstractSeatPlugin
 			__DIR__ . '/Http/Controllers/Api/V2',
 		];
 		$this->registerApiAnnotationsPath($pluginAnnotationPaths);
-	
-        // Register commands
+
+        // Register the commands
         $this->commands([
-            Commands\SyncMoonExtractions::class,
+            \mrmajestic\Seat\MoonExtractions\Commands\SyncMoonExtractions::class,
         ]);
     }
 }
