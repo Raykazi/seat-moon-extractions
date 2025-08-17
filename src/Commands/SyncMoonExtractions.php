@@ -8,7 +8,7 @@ use Seat\Console\Commands\ScheduleCommand;
 use Seat\Eveapi\Models\Corporation\CorporationInfo;
 use Seat\Eveapi\Models\RefreshToken;
 
-class SyncMoonExtractions extends Command implements ScheduleCommand
+class SyncMoonExtractions extends Command
 {
     protected $signature = 'moon:sync-extractions {--corporation_id= : The corporation ID to sync}';
 
