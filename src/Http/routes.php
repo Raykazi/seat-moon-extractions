@@ -1,6 +1,5 @@
 <?php
 
-use mrmajestic\Seat\MoonExtractions\Http\Controllers\Api\V2\MoonExtractionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,24 +38,24 @@ Route::group([
 				Route::get('/statistics')->uses('MoonExtractionsController@statistics');
 					// ->name('api.moon-extractions.statistics');
 				
-				// Get upcoming extractions
-				Route::get('/upcoming', [MoonExtractionsController::class, 'upcoming'])
-					->name('api.moon-extractions.upcoming');
+				// // Get upcoming extractions
+				// Route::get('/upcoming', [MoonExtractionsController::class, 'upcoming'])
+				// 	->name('api.moon-extractions.upcoming');
 				
-				// Get extractions by corporation
-				Route::get('/corporation/{corporationId}', [MoonExtractionsController::class, 'byCorporation'])
-					->name('api.moon-extractions.by-corporation')
-					->whereNumber('corporationId');
+				// // Get extractions by corporation
+				// Route::get('/corporation/{corporationId}', [MoonExtractionsController::class, 'byCorporation'])
+				// 	->name('api.moon-extractions.by-corporation')
+				// 	->whereNumber('corporationId');
 				
-				// Get extractions by system
-				Route::get('/system/{systemId}', [MoonExtractionsController::class, 'bySystem'])
-					->name('api.moon-extractions.by-system')
-					->whereNumber('systemId');
+				// // Get extractions by system
+				// Route::get('/system/{systemId}', [MoonExtractionsController::class, 'bySystem'])
+				// 	->name('api.moon-extractions.by-system')
+				// 	->whereNumber('systemId');
 				
-				// Get specific extraction by structure ID
-				Route::get('/structure/{structureId}', [MoonExtractionsController::class, 'show'])
-					->name('api.moon-extractions.show')
-					->whereNumber('structureId');
+				// // Get specific extraction by structure ID
+				// Route::get('/structure/{structureId}', [MoonExtractionsController::class, 'show'])
+				// 	->name('api.moon-extractions.show')
+				// 	->whereNumber('structureId');
             });
         });
     });
