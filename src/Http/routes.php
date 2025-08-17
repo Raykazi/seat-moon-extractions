@@ -10,8 +10,11 @@
 | with 'api/v1/moon-extractions' and require authentication.
 |
 */
+
+use raykazi\Seat\MoonExtractions\Http\Controllers\Api\V2\MoonExtractionsController;
+
 Route::group([
-    'namespace' => 'mrmajestic\Seat\MoonExtractions\Http\Controllers',
+    'namespace' => 'raykazi\Seat\MoonExtractions\Http\Controllers',
 ], function () {
     Route::group([
         'prefix'     => 'moon-extractions',
@@ -20,7 +23,7 @@ Route::group([
     });
     Route::group([
         'namespace'  => 'Api',
-        'middleware' => ['api.request', 'api.auth', 'throttle:' . config('moon-extractions.api_rate_limit', 60) . ',1'],
+        'middleware' => ['api.request', 'api.auth'],
         'prefix'     => 'api',
     ], function () {
         Route::group([
@@ -31,31 +34,31 @@ Route::group([
                 'prefix' => 'moon-extractions',
             ], function () {
 				// Get all extractions with optional filtering
-				Route::get('/')->uses('MoonExtractionsController@index');
-					// ->name('api.moon-extractions.index');
+				Route::get('/', [MoonExtractionsController::class, 'index'])
+					 ->name('api.moon-extractions.index');
 				
 				// Get extraction statistics
-				Route::get('/statistics')->uses('MoonExtractionsController@statistics');
-					// ->name('api.moon-extractions.statistics');
+				Route::get('/statistics', [MoonExtractionsController::class, 'statistics'])
+					 ->name('api.moon-extractions.statistics');
 				
-				// // Get upcoming extractions
-				// Route::get('/upcoming', [MoonExtractionsController::class, 'upcoming'])
-				// 	->name('api.moon-extractions.upcoming');
+				 // Get upcoming extractions
+				 Route::get('/upcoming', [MoonExtractionsController::class, 'upcoming'])
+				 	->name('api.moon-extractions.upcoming');
 				
-				// // Get extractions by corporation
-				// Route::get('/corporation/{corporationId}', [MoonExtractionsController::class, 'byCorporation'])
-				// 	->name('api.moon-extractions.by-corporation')
-				// 	->whereNumber('corporationId');
+				 // Get extractions by corporation
+				 Route::get('/corporation/{corporationId}', [MoonExtractionsController::class, 'byCorporation'])
+				 	->name('api.moon-extractions.by-corporation')
+				 	->whereNumber('corporationId');
 				
-				// // Get extractions by system
-				// Route::get('/system/{systemId}', [MoonExtractionsController::class, 'bySystem'])
-				// 	->name('api.moon-extractions.by-system')
-				// 	->whereNumber('systemId');
+				 // Get extractions by system
+				 Route::get('/system/{systemId}', [MoonExtractionsController::class, 'bySystem'])
+				 	->name('api.moon-extractions.by-system')
+				 	->whereNumber('systemId');
 				
-				// // Get specific extraction by structure ID
-				// Route::get('/structure/{structureId}', [MoonExtractionsController::class, 'show'])
-				// 	->name('api.moon-extractions.show')
-				// 	->whereNumber('structureId');
+				 // Get specific extraction by structure ID
+				 Route::get('/structure/{structureId}', [MoonExtractionsController::class, 'show'])
+				 	->name('api.moon-extractions.show')
+				 	->whereNumber('structureId');
             });
         });
     });
