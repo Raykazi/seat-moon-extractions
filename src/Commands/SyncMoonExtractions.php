@@ -21,11 +21,9 @@ class SyncMoonExtractions extends Command
         if ($corporationId) {
             $corporations = CorporationInfo::where('corporation_id', $corporationId)->get();
         } else {
-            // Get all corporations with valid refresh tokens and required scopes
-            $corporations = CorporationInfo::whereHas('refresh_tokens', function ($query) {
-                $query->whereIn('scopes', [
-                    'esi-industry.read_corporation_mining.v1',
-                ]);
+            // Get corporations that have characters with valid tokens and required scopes
+            $corporations = CorporationInfo::whereHas('characters.refresh_token', function ($query) {
+                $query->whereJsonContains('scopes', 'esi-industry.read_corporation_mining.v1');
             })->get();
         }
 
