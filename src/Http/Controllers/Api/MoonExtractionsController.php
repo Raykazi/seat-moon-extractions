@@ -13,7 +13,72 @@ use Carbon\Carbon;
 class MoonExtractionsController extends ApiController
 {
     /**
-     * Get all moon extractions with optional filtering.
+     * @OA\Get(
+     *     path="/api/v2/moon-extractions",
+     *     summary="Get all moon extractions",
+     *     description="Retrieve a list of moon extractions with optional filtering",
+     *     operationId="getMoonExtractions",
+     *     tags={"Moon Extractions"},
+     *     security={{"ApiKeyAuth": {}}},
+     *     @OA\Parameter(
+     *         name="corporation_id",
+     *         in="query",
+     *         description="Filter by corporation ID",
+     *         required=false,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *         name="system_id",
+     *         in="query",
+     *         description="Filter by system ID",
+     *         required=false,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *         name="region_id",
+     *         in="query",
+     *         description="Filter by region ID",
+     *         required=false,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *         name="status",
+     *         in="query",
+     *         description="Filter by status",
+     *         required=false,
+     *         @OA\Schema(type="string", enum={"active", "completed"})
+     *     ),
+     *     @OA\Parameter(
+     *         name="start_time",
+     *         in="query",
+     *         description="Start time filter (ISO 8601 format)",
+     *         required=false,
+     *         @OA\Schema(type="string", format="date-time")
+     *     ),
+     *     @OA\Parameter(
+     *         name="end_time",
+     *         in="query",
+     *         description="End time filter (ISO 8601 format)",
+     *         required=false,
+     *         @OA\Schema(type="string", format="date-time")
+     *     ),
+     *     @OA\Parameter(
+     *         name="per_page",
+     *         in="query",
+     *         description="Number of results per page (max 1000)",
+     *         required=false,
+     *         @OA\Schema(type="integer", minimum=1, maximum=1000, default=50)
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(ref="#/components/schemas/MoonExtractionCollection")
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized"
+     *     )
+     * )
      */
     public function index(Request $request): JsonResponse
     {
@@ -65,7 +130,34 @@ class MoonExtractionsController extends ApiController
     }
 
     /**
-     * Get a specific moon extraction by structure ID.
+     * @OA\Get(
+     *     path="/api/v2/moon-extractions/{structureId}",
+     *     summary="Get specific moon extraction by structure ID",
+     *     description="Retrieve the latest moon extraction for a specific structure",
+     *     operationId="getMoonExtractionByStructure",
+     *     tags={"Moon Extractions"},
+     *     security={{"ApiKeyAuth": {}}},
+     *     @OA\Parameter(
+     *         name="structureId",
+     *         in="path",
+     *         description="Structure ID",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(ref="#/components/schemas/MoonExtractionResource")
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Moon extraction not found"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized"
+     *     )
+     * )
      */
     public function show(Request $request, int $structureId): JsonResponse
     {
@@ -77,7 +169,58 @@ class MoonExtractionsController extends ApiController
     }
 
     /**
-     * Get moon extractions for a specific corporation.
+     * @OA\Get(
+     *     path="/api/v2/moon-extractions/corporation/{corporationId}",
+     *     summary="Get moon extractions by corporation",
+     *     description="Retrieve moon extractions for a specific corporation",
+     *     operationId="getCorporationMoonExtractions",
+     *     tags={"Moon Extractions"},
+     *     security={{"ApiKeyAuth": {}}},
+     *     @OA\Parameter(
+     *         name="corporationId",
+     *         in="path",
+     *         description="Corporation ID",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *         name="status",
+     *         in="query",
+     *         description="Filter by status",
+     *         required=false,
+     *         @OA\Schema(type="string", enum={"active", "completed"})
+     *     ),
+     *     @OA\Parameter(
+     *         name="start_time",
+     *         in="query",
+     *         description="Start time filter (ISO 8601 format)",
+     *         required=false,
+     *         @OA\Schema(type="string", format="date-time")
+     *     ),
+     *     @OA\Parameter(
+     *         name="end_time",
+     *         in="query",
+     *         description="End time filter (ISO 8601 format)",
+     *         required=false,
+     *         @OA\Schema(type="string", format="date-time")
+     *     ),
+     *     @OA\Parameter(
+     *         name="per_page",
+     *         in="query",
+     *         description="Number of results per page (max 1000)",
+     *         required=false,
+     *         @OA\Schema(type="integer", minimum=1, maximum=1000, default=50)
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(ref="#/components/schemas/MoonExtractionCollection")
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized"
+     *     )
+     * )
      */
     public function byCorporation(Request $request, int $corporationId): JsonResponse
     {
@@ -109,7 +252,51 @@ class MoonExtractionsController extends ApiController
     }
 
     /**
-     * Get moon extractions in a specific system.
+     * @OA\Get(
+     *     path="/api/v2/moon-extractions/system/{systemId}",
+     *     summary="Get moon extractions by system",
+     *     description="Retrieve moon extractions for a specific solar system",
+     *     operationId="getSystemMoonExtractions",
+     *     tags={"Moon Extractions"},
+     *     security={{"ApiKeyAuth": {}}},
+     *     @OA\Parameter(
+     *         name="systemId",
+     *         in="path",
+     *         description="Solar System ID",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *         name="status",
+     *         in="query",
+     *         description="Filter by status",
+     *         required=false,
+     *         @OA\Schema(type="string", enum={"active", "completed"})
+     *     ),
+     *     @OA\Parameter(
+     *         name="corporation_id",
+     *         in="query",
+     *         description="Filter by corporation ID",
+     *         required=false,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *         name="per_page",
+     *         in="query",
+     *         description="Number of results per page (max 1000)",
+     *         required=false,
+     *         @OA\Schema(type="integer", minimum=1, maximum=1000, default=50)
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(ref="#/components/schemas/MoonExtractionCollection")
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized"
+     *     )
+     * )
      */
     public function bySystem(Request $request, int $systemId): JsonResponse
     {
@@ -140,7 +327,51 @@ class MoonExtractionsController extends ApiController
     }
 
     /**
-     * Get upcoming extractions (next 24 hours by default).
+     * @OA\Get(
+     *     path="/api/v2/moon-extractions/upcoming",
+     *     summary="Get upcoming moon extractions",
+     *     description="Retrieve moon extractions scheduled for the near future",
+     *     operationId="getUpcomingMoonExtractions",
+     *     tags={"Moon Extractions"},
+     *     security={{"ApiKeyAuth": {}}},
+     *     @OA\Parameter(
+     *         name="hours",
+     *         in="query",
+     *         description="Hours ahead to look for extractions (default: 24)",
+     *         required=false,
+     *         @OA\Schema(type="integer", default=24)
+     *     ),
+     *     @OA\Parameter(
+     *         name="corporation_id",
+     *         in="query",
+     *         description="Filter by corporation ID",
+     *         required=false,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *         name="system_id",
+     *         in="query",
+     *         description="Filter by system ID",
+     *         required=false,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *         name="per_page",
+     *         in="query",
+     *         description="Number of results per page (max 1000)",
+     *         required=false,
+     *         @OA\Schema(type="integer", minimum=1, maximum=1000, default=50)
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(ref="#/components/schemas/MoonExtractionCollection")
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized"
+     *     )
+     * )
      */
     public function upcoming(Request $request): JsonResponse
     {
@@ -168,7 +399,30 @@ class MoonExtractionsController extends ApiController
     }
 
     /**
-     * Get extraction statistics.
+     * @OA\Get(
+     *     path="/api/v2/moon-extractions/statistics",
+     *     summary="Get extraction statistics",
+     *     description="Retrieve statistical information about moon extractions",
+     *     operationId="getMoonExtractionStatistics",
+     *     tags={"Moon Extractions"},
+     *     security={{"ApiKeyAuth": {}}},
+     *     @OA\Parameter(
+     *         name="corporation_id",
+     *         in="query",
+     *         description="Filter statistics by corporation ID",
+     *         required=false,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(ref="#/components/schemas/MoonExtractionStatistics")
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized"
+     *     )
+     * )
      */
     public function statistics(Request $request): JsonResponse
     {

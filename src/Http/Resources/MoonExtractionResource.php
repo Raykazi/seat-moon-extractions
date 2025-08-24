@@ -7,10 +7,58 @@ use Seat\Eveapi\Models\Corporation\CorporationInfo;
 use Seat\Eveapi\Models\Corporation\CorporationStructure;
 use Seat\Eveapi\Models\Sde\Moon;
 use Seat\Eveapi\Models\Universe\UniverseStructure;
+use Seat\Eveapi\Models\Sde\SolarSystem;
 use Seat\Web\Models\UniverseMoonReport;
 
 class MoonExtractionResource extends JsonResource
 {
+    /**
+     * @OA\Schema(
+     *     schema="MoonExtractionCollection",
+     *     type="object",
+     *     title="Moon Extraction Collection",
+     *     description="Paginated collection of moon extractions",
+     *     @OA\Property(
+     *         property="data",
+     *         type="array",
+     *         @OA\Items(ref="#/components/schemas/MoonExtractionResource")
+     *     ),
+     *     @OA\Property(property="current_page", type="integer"),
+     *     @OA\Property(property="per_page", type="integer"),
+     *     @OA\Property(property="total", type="integer"),
+     *     @OA\Property(property="last_page", type="integer")
+     * )
+     * @OA\Schema(
+     *     schema="MoonExtractionResource",
+     *     type="object",
+     *     title="Moon Extraction Resource",
+     *     description="Moon extraction data resource",
+     *     @OA\Property(property="id", type="integer", description="Extraction ID"),
+     *     @OA\Property(property="corporation_id", type="integer", description="Corporation ID"),
+     *     @OA\Property(property="corporation_name", type="string", description="Corporation name"),
+     *     @OA\Property(property="structure_id", type="integer", description="Structure ID"),
+     *     @OA\Property(property="extraction_start_time", type="string", format="date-time"),
+     *     @OA\Property(property="chunk_arrival_time", type="string", format="date-time"),
+     *     @OA\Property(property="natural_decay_time", type="string", format="date-time"),
+     *     @OA\Property(property="status", type="string", enum={"active", "completed"})
+     * )
+     * @OA\Schema(
+     *     schema="MoonExtractionStatistics",
+     *     type="object",
+     *     title="Moon Extraction Statistics",
+     *     description="Statistical data about moon extractions",
+     *     @OA\Property(
+     *         property="data",
+     *         type="object",
+     *         @OA\Property(property="total_extractions", type="integer"),
+     *         @OA\Property(property="active_extractions", type="integer"),
+     *         @OA\Property(property="completed_extractions", type="integer"),
+     *         @OA\Property(property="upcoming_24h", type="integer"),
+     *         @OA\Property(property="total_estimated_value", type="number"),
+     *         @OA\Property(property="corporation_id", type="integer", nullable=true)
+     *     )
+     * )
+     */
     public function toArray($request)
     {
         // Get related data
