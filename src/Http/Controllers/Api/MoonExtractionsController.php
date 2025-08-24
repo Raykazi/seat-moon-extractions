@@ -1,6 +1,6 @@
 <?php
 
-namespace raykazi\Seat\MoonExtractions\Http\Controllers\Api\V2;
+namespace raykazi\Seat\MoonExtractions\Http\Controllers\Api;
 
 use Seat\Api\Http\Controllers\Api\v2\ApiController;
 use Illuminate\Http\JsonResponse;

@@ -78,7 +78,7 @@ class MoonExtractionsServiceProvider extends AbstractSeatPlugin
 		// API Documentation (L5-Swagger)
 		$pluginAnnotationPaths = [
 			__DIR__ . '/Http/Resources',
-			__DIR__ . '/Http/Controllers/Api/V2',
+			__DIR__ . '/Http/Controllers/Api',
 		];
 		$this->registerApiAnnotationsPath($pluginAnnotationPaths);
 
