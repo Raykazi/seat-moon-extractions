@@ -7,10 +7,45 @@ use Seat\Eveapi\Models\Corporation\CorporationInfo;
 use Seat\Eveapi\Models\Corporation\CorporationStructure;
 use Seat\Eveapi\Models\Sde\Moon;
 use Seat\Eveapi\Models\Universe\UniverseStructure;
+use Seat\Eveapi\Models\Sde\SolarSystem;
 use Seat\Web\Models\UniverseMoonReport;
 
 class MoonExtractionResource extends JsonResource
 {
+    /**
+     * @OA\Schema(
+     *     schema="MoonExtraction",
+     *     type="object",
+     *     title="Moon Extraction",
+     *     description="Moon extraction data",
+     *     @OA\Property(property="id", type="integer", description="Extraction ID"),
+     *     @OA\Property(property="corporation_id", type="integer", description="Corporation ID"),
+     *     @OA\Property(property="corporation_name", type="string", description="Corporation name"),
+     *     @OA\Property(property="structure_id", type="integer", description="Structure ID"),
+     *     @OA\Property(property="name", type="string", description="Structure name"),
+     *     @OA\Property(property="solar_system_id", type="integer", description="Solar system ID"),
+     *     @OA\Property(property="solar_system_name", type="string", description="Solar system name"),
+     *     @OA\Property(property="moon_id", type="integer", description="Moon ID"),
+     *     @OA\Property(property="moon_name", type="string", description="Moon name"),
+     *     @OA\Property(property="extraction_start_time", type="string", format="date-time", description="Extraction start time"),
+     *     @OA\Property(property="chunk_arrival_time", type="string", format="date-time", description="Chunk arrival time"),
+     *     @OA\Property(property="natural_decay_time", type="string", format="date-time", description="Natural decay time"),
+     *     @OA\Property(property="status", type="string", enum={"active", "completed"}, description="Extraction status"),
+     *     @OA\Property(property="moon_rarity", type="string", description="Moon material rarity"),
+     *     @OA\Property(property="content", type="array", description="Moon composition", @OA\Items(ref="#/components/schemas/MoonContent"))
+     * )
+     * @OA\Schema(
+     *     schema="MoonContent",
+     *     type="object",
+     *     title="Moon Content",
+     *     description="Moon material content",
+     *     @OA\Property(property="typeName", type="string", description="Material type name"),
+     *     @OA\Property(property="volume", type="number", description="Material volume"),
+     *     @OA\Property(property="rate", type="number", description="Extraction rate"),
+     *     @OA\Property(property="m3", type="number", description="Cubic meters"),
+     *     @OA\Property(property="rarity", type="string", description="Material rarity")
+     * )
+     */
     public function toArray($request)
     {
         // Get related data
