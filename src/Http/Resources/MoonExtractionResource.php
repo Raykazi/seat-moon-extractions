@@ -14,49 +14,36 @@ class MoonExtractionResource extends JsonResource
 {
     /**
      * @OA\Schema(
-     *     schema="MoonExtractionCollection",
+     *     schema="MoonExtraction",
      *     type="object",
-     *     title="Moon Extraction Collection",
-     *     description="Paginated collection of moon extractions",
-     *     @OA\Property(
-     *         property="data",
-     *         type="array",
-     *         @OA\Items(ref="#/components/schemas/MoonExtractionResource")
-     *     ),
-     *     @OA\Property(property="current_page", type="integer"),
-     *     @OA\Property(property="per_page", type="integer"),
-     *     @OA\Property(property="total", type="integer"),
-     *     @OA\Property(property="last_page", type="integer")
-     * )
-     * @OA\Schema(
-     *     schema="MoonExtractionResource",
-     *     type="object",
-     *     title="Moon Extraction Resource",
-     *     description="Moon extraction data resource",
+     *     title="Moon Extraction",
+     *     description="Moon extraction data",
      *     @OA\Property(property="id", type="integer", description="Extraction ID"),
      *     @OA\Property(property="corporation_id", type="integer", description="Corporation ID"),
      *     @OA\Property(property="corporation_name", type="string", description="Corporation name"),
      *     @OA\Property(property="structure_id", type="integer", description="Structure ID"),
-     *     @OA\Property(property="extraction_start_time", type="string", format="date-time"),
-     *     @OA\Property(property="chunk_arrival_time", type="string", format="date-time"),
-     *     @OA\Property(property="natural_decay_time", type="string", format="date-time"),
-     *     @OA\Property(property="status", type="string", enum={"active", "completed"})
+     *     @OA\Property(property="name", type="string", description="Structure name"),
+     *     @OA\Property(property="solar_system_id", type="integer", description="Solar system ID"),
+     *     @OA\Property(property="solar_system_name", type="string", description="Solar system name"),
+     *     @OA\Property(property="moon_id", type="integer", description="Moon ID"),
+     *     @OA\Property(property="moon_name", type="string", description="Moon name"),
+     *     @OA\Property(property="extraction_start_time", type="string", format="date-time", description="Extraction start time"),
+     *     @OA\Property(property="chunk_arrival_time", type="string", format="date-time", description="Chunk arrival time"),
+     *     @OA\Property(property="natural_decay_time", type="string", format="date-time", description="Natural decay time"),
+     *     @OA\Property(property="status", type="string", enum={"active", "completed"}, description="Extraction status"),
+     *     @OA\Property(property="moon_rarity", type="string", description="Moon material rarity"),
+     *     @OA\Property(property="content", type="array", description="Moon composition", @OA\Items(ref="#/components/schemas/MoonContent"))
      * )
      * @OA\Schema(
-     *     schema="MoonExtractionStatistics",
+     *     schema="MoonContent",
      *     type="object",
-     *     title="Moon Extraction Statistics",
-     *     description="Statistical data about moon extractions",
-     *     @OA\Property(
-     *         property="data",
-     *         type="object",
-     *         @OA\Property(property="total_extractions", type="integer"),
-     *         @OA\Property(property="active_extractions", type="integer"),
-     *         @OA\Property(property="completed_extractions", type="integer"),
-     *         @OA\Property(property="upcoming_24h", type="integer"),
-     *         @OA\Property(property="total_estimated_value", type="number"),
-     *         @OA\Property(property="corporation_id", type="integer", nullable=true)
-     *     )
+     *     title="Moon Content",
+     *     description="Moon material content",
+     *     @OA\Property(property="typeName", type="string", description="Material type name"),
+     *     @OA\Property(property="volume", type="number", description="Material volume"),
+     *     @OA\Property(property="rate", type="number", description="Extraction rate"),
+     *     @OA\Property(property="m3", type="number", description="Cubic meters"),
+     *     @OA\Property(property="rarity", type="string", description="Material rarity")
      * )
      */
     public function toArray($request)
