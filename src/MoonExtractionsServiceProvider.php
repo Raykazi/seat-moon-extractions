@@ -14,7 +14,7 @@ class MoonExtractionsServiceProvider extends AbstractSeatPlugin
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/moon-extractions.php', 'moon-extractions');
+//        $this->mergeConfigFrom(__DIR__ . '/../config/moon-extractions.php', 'moon-extractions');
     }
 
 
