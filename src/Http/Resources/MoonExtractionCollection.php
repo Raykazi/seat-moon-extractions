@@ -12,7 +12,7 @@ use OpenApi\Annotations as OA;
  *     @OA\Property(
  *         property="data",
  *         type="array",
- *         @OA\Items(ref="#/components/schemas/MoonExtraction")
+ *         @OA\Items(ref="#/components/schemas/MoonExtractionResource")
  *     ),
  *     @OA\Property(
  *         property="links",
