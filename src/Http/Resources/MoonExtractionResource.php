@@ -14,7 +14,7 @@ class MoonExtractionResource extends JsonResource
 {
     /**
      * @OA\Schema(
-     *     schema="MoonExtraction",
+     *     schema="MoonExtractionResource",
      *     type="object",
      *     title="Moon Extraction",
      *     description="Moon extraction data",
