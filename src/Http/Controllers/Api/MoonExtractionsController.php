@@ -123,7 +123,7 @@ class MoonExtractionsController extends ApiController
         $query->orderBy('chunk_arrival_time', 'asc');
 
         // Apply pagination
-        $perPage = min($request->get('per_page', 50), config('moon-extractions.max_results', 1000));
+        $perPage = min($request->get('per_page', 50), 1000);
         $extractions = $query->paginate($perPage);
 
         return response()->json(new MoonExtractionCollection($extractions));
@@ -245,7 +245,7 @@ class MoonExtractionsController extends ApiController
 
         $query->orderBy('chunk_arrival_time', 'asc');
 
-        $perPage = min($request->get('per_page', 50), config('moon-extractions.max_results', 1000));
+        $perPage = min($request->get('per_page', 50), 1000);
         $extractions = $query->paginate($perPage);
 
         return response()->json(new MoonExtractionCollection($extractions));
@@ -320,7 +320,7 @@ class MoonExtractionsController extends ApiController
 
         $query->orderBy('chunk_arrival_time', 'asc');
 
-        $perPage = min($request->get('per_page', 50), config('moon-extractions.max_results', 1000));
+        $perPage = min($request->get('per_page', 50), 1000);
         $extractions = $query->paginate($perPage);
 
         return response()->json(new MoonExtractionCollection($extractions));
@@ -392,7 +392,7 @@ class MoonExtractionsController extends ApiController
             });
         }
 
-        $perPage = min($request->get('per_page', 50), config('moon-extractions.max_results', 1000));
+        $perPage = min($request->get('per_page', 50), 1000);
         $extractions = $query->paginate($perPage);
 
         return response()->json(new MoonExtractionCollection($extractions));
