@@ -11,7 +11,7 @@
 |
 */
 
-use raykazi\Seat\MoonExtractions\Http\Controllers\Api\V2\MoonExtractionsController;
+use raykazi\Seat\MoonExtractions\Http\Controllers\Api\MoonExtractionsController;
 
 Route::group([
     'namespace' => 'raykazi\Seat\MoonExtractions\Http\Controllers',
