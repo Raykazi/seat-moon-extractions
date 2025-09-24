@@ -39,7 +39,7 @@ class MoonExtractionsServiceProvider extends AbstractSeatPlugin
      */
     public function getPackageRepositoryUrl(): string
     {
-        return 'https://github.com/tjerge/seat-moon-extractions';
+        return 'https://github.com/Raykazi/seat-moon-extractions';
     }
 
     /**
@@ -63,7 +63,7 @@ class MoonExtractionsServiceProvider extends AbstractSeatPlugin
      */
     public function getPackagistVendorName(): string
     {
-        return 'mrmajestic/seat-moon-extractions';
+        return 'raykazi/seat-moon-extractions';
     }
     /**
      * Bootstrap services.
