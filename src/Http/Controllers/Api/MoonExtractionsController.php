@@ -9,7 +9,26 @@ use Seat\Eveapi\Models\Industry\CorporationIndustryMiningExtraction;
 use raykazi\Seat\MoonExtractions\Http\Resources\MoonExtractionResource;
 use raykazi\Seat\MoonExtractions\Http\Resources\MoonExtractionCollection;
 use Carbon\Carbon;
+use OpenApi\Annotations as OA;
 
+/**
+ * @OA\Schema(
+ *     schema="MoonExtractionStatistics",
+ *     type="object",
+ *     title="Moon Extraction Statistics",
+ *     description="Statistical information about moon extractions",
+ *     @OA\Property(
+ *         property="data",
+ *         type="object",
+ *         @OA\Property(property="total_extractions", type="integer", description="Total number of extractions"),
+ *         @OA\Property(property="active_extractions", type="integer", description="Number of active extractions"),
+ *         @OA\Property(property="completed_extractions", type="integer", description="Number of completed extractions"),
+ *         @OA\Property(property="upcoming_24h", type="integer", description="Number of extractions in next 24 hours"),
+ *         @OA\Property(property="total_estimated_value", type="number", description="Total estimated value of extractions"),
+ *         @OA\Property(property="corporation_id", type="integer", description="Corporation ID (if filtered)", nullable=true)
+ *     )
+ * )
+ */
 class MoonExtractionsController extends ApiController
 {
     /**
